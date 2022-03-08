@@ -82,9 +82,14 @@ const updateUser = async function (req, res) {
   let userData = req.body;
   let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData);
   res.send({ status: updatedUser, data: updatedUser });
+
+  
+  let deletedUser = await userModel.remove({_id: userId}, userData)
+  res.send({status: deleteUser, data: deleteUser})
 };
 
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
+//  module.exports.deletedUser = deletedUser;
