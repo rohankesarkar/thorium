@@ -20,7 +20,7 @@ const createAuthor = async function (req, res) {
 
 
         if (!cpassword) { return res.status(400).send({ status: false, msg: "cpassword field must be required" }) }
-        if (password != cpassword) {  // checking password password is matchng or not
+        if (password != cpassword) {  // checking password password is matchng or not this cpasswod is only for verification 
             return res.status(422).send({ error: "password are not matchong" })
         }
 
@@ -28,7 +28,7 @@ const createAuthor = async function (req, res) {
         if (userExist) { return res.status(422).send({ status: false, error: `ERROR! : ${email}this Email already exist` }) }
 
 
-        delete req.body["cpassword"] // we are deleting the cpassword because don't need to save in dataBase
+        delete req.body["cpassword"] // we are deleting the cpassword because don't need to save in dataBase database should be neat 
 
         let savedData = await authorModel.create(req.body)
         res.status(201).send({ status: true, data: savedData })
